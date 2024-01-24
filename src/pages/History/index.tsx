@@ -6,7 +6,6 @@ import { ptBR } from 'date-fns/locale'
 
 export function History() {
   const { cycles } = useContext(CyclesContext)
-  console.log(cycles)
   return (
     <HistoryContainer>
       <h1>Meu Histórico</h1>
@@ -28,20 +27,20 @@ export function History() {
                   <td>{cycle.task}</td>
                   <td>{cycle.minutesAmount} minutos</td>
                   <td>
-                    {formatDistanceToNow(cycle.startDate, {
+                    {formatDistanceToNow(new Date(cycle.startDate), {
                       addSuffix: true,
                       locale: ptBR,
                     })}
                   </td>
                   <td>
                     {cycle.finishedDate && (
-                      <Status statusColor="green">Concluído</Status>
+                      <Status statusVariantColor="green">Concluído</Status>
                     )}
                     {cycle.interruptedDate && (
-                      <Status statusColor="red">Interrompido</Status>
+                      <Status statusVariantColor="red">Interrompido</Status>
                     )}
                     {!cycle.interruptedDate && !cycle.interruptedDate && (
-                      <Status statusColor="yellow">Em andamento</Status>
+                      <Status statusVariantColor="yellow">Em andamento</Status>
                     )}
                   </td>
                 </tr>
